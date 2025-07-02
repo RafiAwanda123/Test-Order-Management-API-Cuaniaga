@@ -9,6 +9,7 @@ https://github.com/RafiAwanda123/Test-Order-Management-API-Cuaniaga/
 - Node.js & Express.js
 - JWT untuk autentikasi
 - CRUD produk hanya Admin
+- Riwayat pesanan customer
 - Middleware untuk validasi dan error handling
 - SQL
 
@@ -43,6 +44,8 @@ contoh beberapa testing menggunakan postman
 
 ![image](https://github.com/user-attachments/assets/23632724-0e9c-42fc-9582-6f6b542a38ae)
 ![image](https://github.com/user-attachments/assets/a5f9753b-873a-4128-8c00-313ceb966f96)
+![image](https://github.com/user-attachments/assets/5ae57775-f7ac-41db-b4ed-eb2a8284dd88)
+
 
 
 ---
