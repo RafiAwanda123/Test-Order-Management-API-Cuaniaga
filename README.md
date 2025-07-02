@@ -3,7 +3,7 @@
 RESTful API sederhana untuk sistem manajemen pemesanan, mencakup autentikasi, produk, pemesanan, dan riwayat.
 
 ## Repository
-Ini adalah repositori **public**. Harap disesuaikan dengan URL GitHub Anda saat push repo.
+https://github.com/RafiAwanda123/Test-Order-Management-API-Cuaniaga/
 
 ## Teknologi
 - Node.js & Express.js
