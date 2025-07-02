@@ -8,7 +8,7 @@ https://github.com/RafiAwanda123/Test-Order-Management-API-Cuaniaga/
 ## Teknologi
 - Node.js & Express.js
 - JWT untuk autentikasi
-- CURD produk hanya Admin
+- CRUD produk hanya Admin
 - Middleware untuk validasi dan error handling
 - SQL
 
