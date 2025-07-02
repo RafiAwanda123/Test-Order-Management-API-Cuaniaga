@@ -1,0 +1,9 @@
+# Node.js
+node_modules/
+package-lock.json      # Hanya jika Anda memilih untuk mengabaikannya
+
+# Lingkungan
+.env
+
+# Editor/IDE
+.vscode/
