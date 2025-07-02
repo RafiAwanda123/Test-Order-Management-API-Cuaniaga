@@ -5,7 +5,7 @@ RESTful API sederhana untuk sistem manajemen pemesanan, mencakup autentikasi, pr
 ## Repository
 Ini adalah repositori **public**. Harap disesuaikan dengan URL GitHub Anda saat push repo.
 
-## 📦 Teknologi
+## Teknologi
 - Node.js & Express.js
 - JWT untuk autentikasi
 - CURD produk hanya Admin
