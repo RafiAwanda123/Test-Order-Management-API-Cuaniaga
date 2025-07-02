@@ -27,13 +27,10 @@ const registerSchema = Joi.object({
   query: Joi.object({})
 });
 
-// Endpoint login
 router.post('/login', validate(loginSchema), authController.login);
 
-// Endpoint register publik
 router.post('/register', validate(registerSchema), authController.register);
 
-// Endpoint register admin (hanya untuk admin)
 router.post('/admin/register', 
   authorize(['admin']),
   validate(registerSchema),

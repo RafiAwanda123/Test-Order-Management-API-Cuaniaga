@@ -8,7 +8,6 @@ class AuthService {
     try {
       console.log('Starting registration for:', email);
       
-      // 1. Cek email unik
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         console.log('Email already exists:', email);
@@ -26,11 +25,9 @@ class AuthService {
       throw new ApiError(400, 'Password must be at least 6 characters');
       }
 
-      // 2. Hash password
       const hashedPassword = await bcrypt.hash(password, 10);
       console.log('Password hashed');
 
-      // 3. Buat user
       const newUser = await User.create({
         name,
         email,
@@ -44,7 +41,6 @@ class AuthService {
         throw new Error('JWT_SECRET is not defined in environment variables');
       }
 
-      // 4. Generate token
       const token = jwt.sign(
         {
           id: newUser.id,
@@ -65,7 +61,6 @@ class AuthService {
     } catch (error) {
       console.error('AuthService.register error:', error);
       
-      // Tangani error spesifik
       if (error.message.includes('JWT_SECRET')) {
         throw new ApiError(500, 'Server configuration error');
       }
@@ -78,7 +73,6 @@ class AuthService {
     try {
       console.log('Starting registration for:', email);
       
-      // 1. Cek email unik
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         console.log('Email already exists:', email);
@@ -96,11 +90,9 @@ class AuthService {
       throw new ApiError(400, 'Password must be at least 6 characters');
       }
 
-      // 2. Hash password
       const hashedPassword = await bcrypt.hash(password, 10);
       console.log('Password hashed');
 
-      // 3. Buat user
       const newUser = await User.create({
         name,
         email,
@@ -114,7 +106,6 @@ class AuthService {
         throw new Error('JWT_SECRET is not defined in environment variables');
       }
 
-      // 4. Generate token
       const token = jwt.sign(
         {
           id: newUser.id,
@@ -144,7 +135,6 @@ class AuthService {
   }
   
   async login(email, password) {
-    // 1. Cari user termasuk password
     const user = await User.findOne({
       where: { email },
       attributes: ['id', 'name', 'email', 'password', 'role']
@@ -154,17 +144,14 @@ class AuthService {
       throw new ApiError(401, 'Invalid credentials');
     }
 
-    // 2. Verifikasi password
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       throw new ApiError(401, 'Invalid credentials');
     }
 
-    // 3. Generate tokens
     const accessToken = this.generateToken(user, 'access');
     const refreshToken = this.generateToken(user, 'refresh');
 
-    // 4. Return data user tanpa password
     const userData = {
       id: user.id,
       name: user.name,
@@ -212,7 +199,6 @@ class AuthService {
   }
 
   generateToken(user, type = 'access') {
-  // Validasi secret
   if (!process.env.JWT_SECRET) {
     throw new Error('JWT_SECRET is not defined in environment variables');
   }

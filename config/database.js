@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
   port: process.env.DB_PORT,
   dialect: 'mysql',
   dialectOptions: {
-    connectTimeout: 60000 
+    connectTimeout: 30000
   },
   logging: console.log, 
   operatorsAliases: 0, 

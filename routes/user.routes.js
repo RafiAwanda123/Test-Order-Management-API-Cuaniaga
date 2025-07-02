@@ -17,7 +17,6 @@ const updateProfileSchema = Joi.object({
   query: Joi.object({}) 
 });
 
-// Admin-only routes
 router.get(
   '/',
   authenticate,
@@ -25,7 +24,6 @@ router.get(
   userController.getAllUsers
 );
 
-// User profile routes (untuk semua user yang terautentikasi)
 router.get(
   '/me',
   authenticate,
@@ -39,7 +37,6 @@ router.patch(
   userController.updateUserProfile
 );
 
-// Admin-only user management
 router.get(
   '/:id',
   authenticate,

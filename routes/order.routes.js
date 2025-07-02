@@ -19,19 +19,14 @@ const orderSchema = Joi.object({
   query: Joi.object({})
 });
 
-// Semua endpoint memerlukan autentikasi
 router.use(authenticate);
 
-// Buat pesanan baru
 router.post('/', validate(orderSchema), orderController.createOrder);
 
-// Dapatkan riwayat pesanan
 router.get('/history', orderController.getOrderHistory);
 
-// Dapatkan detail pesanan
 router.get('/:id', orderController.getOrderDetails);
 
-// Batalkan pesanan
 router.put('/:id/cancel', orderController.cancelOrder);
 
 module.exports = router;

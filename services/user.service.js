@@ -28,7 +28,6 @@ class UserService {
       throw new ApiError(404, 'User not found');
     }
     
-    // Validasi email unik jika diupdate
     if (updateData.email && updateData.email !== user.email) {
       const existingUser = await User.findOne({ where: { email: updateData.email } });
       if (existingUser) {
@@ -36,14 +35,12 @@ class UserService {
       }
     }
     
-    // Enkripsi password jika diupdate
     if (updateData.password) {
       updateData.password = await bcrypt.hash(updateData.password, 10);
     }
     
     await user.update(updateData);
     
-    // Kembalikan data tanpa password
     const updatedUser = user.get({ plain: true });
     delete updatedUser.password;
     

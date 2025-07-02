@@ -6,13 +6,11 @@ const errorHandler = (err, req, res, next) => {
   let stack = null;
   let errors = null;
 
-  // 1. Handle custom ApiError
   if (err instanceof ApiError) {
     message = err.message;
     errors = err.errors;
   }
   
-  // 2. Handle Sequelize validation errors
   else if (err.name === 'SequelizeValidationError') {
     statusCode = 400;
     message = 'Validation Error';
@@ -22,7 +20,6 @@ const errorHandler = (err, req, res, next) => {
     }));
   }
   
-  // 3. Handle Sequelize unique constraint error
   else if (err.name === 'SequelizeUniqueConstraintError') {
     statusCode = 409;
     message = 'Duplicate Entry Error';
@@ -32,13 +29,11 @@ const errorHandler = (err, req, res, next) => {
     }));
   }
   
-  // 4. Handle Sequelize database errors
   else if (err.name === 'SequelizeDatabaseError') {
     statusCode = 400;
     message = 'Database Error';
   }
   
-  // 5. Handle JWT errors
   else if (err.name === 'JsonWebTokenError') {
     statusCode = 401;
     message = 'Invalid token';
@@ -48,12 +43,10 @@ const errorHandler = (err, req, res, next) => {
     message = 'Token expired';
   }
   
-  // 6. Handle MySQL duplicate entry
   else if (err.code === 'ER_DUP_ENTRY') {
     statusCode = 409;
     message = 'Duplicate entry detected';
     
-    // Ekstrak field yang duplicate
     const match = err.sqlMessage.match(/for key '(.+)'/);
     if (match) {
       errors = [{
@@ -63,13 +56,11 @@ const errorHandler = (err, req, res, next) => {
     }
   }
 
-  // 7. Handle foreign key constraint failure
   else if (err.code === 'ER_NO_REFERENCED_ROW_2') {
     statusCode = 400;
     message = 'Related resource not found';
   }
 
-  // 8. Handle request validation errors
   else if (err.isJoi) {
     statusCode = 422;
     message = 'Validation Error';
@@ -88,7 +79,6 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Logging
   if (process.env.NODE_ENV === 'development') {
     stack = err.stack;
     
@@ -103,7 +93,6 @@ const errorHandler = (err, req, res, next) => {
     // logger.error(`${statusCode} - ${message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
   }
 
-  // Response format
   const response = {
     status: 'error',
     statusCode,
