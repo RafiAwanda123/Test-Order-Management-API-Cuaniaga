@@ -47,4 +47,4 @@ contoh beberapa testing menggunakan postman
 
 ---
 
-> © Rafi Satria Dwi Awanda – Project Order Management API – 2025
+> © Rafi Satria Dwi Awanda – Test Order Management API – 2025
